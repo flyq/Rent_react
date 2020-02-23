@@ -59,7 +59,8 @@
   "scripts": {
     "dev": "node webpack/start.js",
     "build": "node webpack/build.js",
-    "test": "node webpack/test.js --env=jsdom"
+    "test": "node webpack/test.js --env=jsdom",
+    "deploy": "node ./src/contracts/deploy.js"
   },
   "jest": {
     "collectCoverageFrom": [
