@@ -1,0 +1,27 @@
+@mixin icon ($width, $height, $list, $decorators) {
+	@each $item in $list {
+		&-#{$item} {
+			width: $width;
+			height: $height;
+			background: url(~@/assets/icons/icon_#{$item}.png) center no-repeat;
+      background-size: 100%;
+
+			@if $decorators != null {
+				@each $decorator in $decorators {
+					&.#{$decorator} {
+						background: url(~@/assets/icons/icon_#{$item}_#{$decorator}.png) center no-repeat;
+            background-size: 100%;
+					}
+				}
+			}
+		}
+	}
+}
+
+.icon {
+	display: inline-block;
+	position: relative;
+	vertical-align: middle;
+
+	// @include icon(40px, 40px, (my), (yellow));
+}

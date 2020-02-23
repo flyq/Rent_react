@@ -1,0 +1,52 @@
+@import "~@/theme/var.global.scss";
+.home {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling : touch; 
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 20px
+}
+
+.title {
+  color: #333;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.item {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 6px;
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  .status {
+    font-size: 18px;
+    margin: 6px 0;
+  }
+
+  .name {
+    margin-bottom: 6px;
+  }
+
+  .pic {
+    span {
+      margin-right: 6px;
+    }
+
+    b {
+      margin-right: 10px;
+    }
+  }
+}
