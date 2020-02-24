@@ -9,6 +9,15 @@ import {
 
 import cita from '../../cita-sdk'
 
+const {
+  REACT_APP_RUNTIME
+} = process.env
+
+const submitTexts = {
+  normal: '愿此刻永恒',
+  submitting: '保存中',
+  submitted: '保存成功',
+}
 
 class Dialog extends Component {
   state = {
@@ -47,7 +56,12 @@ class Dialog extends Component {
         }
         tx.from =
 
-            cita.base.accounts.wallet[0].address 
+        REACT_APP_RUNTIME === 'web' ?
+        cita.base.accounts.wallet[0].address :
+        REACT_APP_RUNTIME === 'cita-web-debugger' ?
+          cita.base.defaultAccount :
+          REACT_APP_RUNTIME === 'cyton' ?
+            window.cyton.getAccount() : '' 
 
         this.setState({
           submitText: submitTexts.submitting,
