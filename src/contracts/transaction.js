@@ -7,11 +7,11 @@ const transaction = {
   validUntilBlock: 999999,
   value: "0x78"
 };
-/*
-if (process.env.REACT_APP_RUNTIME === "cyton") {
+
+if (process.env.REACT_APP_RUNTIME === "web") {
   transaction.from = cita.base.accounts.wallet[0].address;
   transaction.privateKey = cita.base.accounts.wallet[0].privateKey;
 }
-*/
+
 
 module.exports = transaction;
