@@ -35,7 +35,7 @@ class Dialog extends Component {
   }
 
   getTime () {
-    var now = new Date(Date.now() + 12*60*60*1000);
+    var now = new Date(Date.now() + this.state.time *60*60*1000);
     var year = now.getFullYear(); //得到年份
     var month = now.getMonth() + 1;//得到月份
     var date = now.getDate();//得到日期
