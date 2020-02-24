@@ -2,6 +2,14 @@ import React from 'react'
 import Component from '@/Component'
 import styles from './dialog.scss'
 
+import {
+  transaction,
+  rentContract,
+} from '../../rent'
+
+import cita from '../../cita-sdk'
+
+
 class Dialog extends Component {
   state = {
     time: '',
@@ -14,11 +22,22 @@ class Dialog extends Component {
   }
 
   buy () {
-    if (`${this.state.pic}` !== 'NaN') {
-        console.log(this.state.time, '这是祖的时长')
-        console.log(this.state.pic, '这是租的总共的价格')
-        console.log('支付函数')
-    }
+    cita.base.getBlockNumber().then(
+      current => {
+        const tx = {
+          ...transaction,
+          validUntilBlock: +current + 88,
+        }
+        tx.from =
+        REACT_APP_RUNTIME === 'web' ?
+        cita.base.accounts.wallet[0].address :
+        REACT_APP_RUNTIME === 'cita-web-debugger' ?
+          cita.base.defaultAccount :
+          REACT_APP_RUNTIME === 'cyton' ?
+            window.cyton.getAccount() : ''
+      }
+      return rentContract.methods.rent(1,43200).send(tx);
+    )
   }
 
   render() {

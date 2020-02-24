@@ -5,7 +5,7 @@ const transaction = {
   chainId: "0x1",
   version: 1,
   validUntilBlock: 999999,
-  value: "0x0"
+  value: "0x78"
 };
 /*
 if (process.env.REACT_APP_RUNTIME === "cyton") {
