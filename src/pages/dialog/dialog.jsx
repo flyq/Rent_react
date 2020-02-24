@@ -29,7 +29,9 @@ class Dialog extends Component {
   change (e) {
     this.setState({ time: e.target.value, pic: this.props.data.pic * e.target.value })
   }
-
+/*
+交易已发送，请耐心等待区块打包
+*/
   buy () {
     cita.base.getBlockNumber().then(
       current => {
