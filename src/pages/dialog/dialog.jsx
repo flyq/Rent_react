@@ -28,15 +28,9 @@ class Dialog extends Component {
           ...transaction,
           validUntilBlock: +current + 88,
         }
-        tx.from =
-        REACT_APP_RUNTIME === 'web' ?
-        cita.base.accounts.wallet[0].address :
-        REACT_APP_RUNTIME === 'cita-web-debugger' ?
-          cita.base.defaultAccount :
-          REACT_APP_RUNTIME === 'cyton' ?
-            window.cyton.getAccount() : ''
-      }
-      return rentContract.methods.rent(1,43200).send(tx);
+        tx.from = window.cyton.getAccount();
+      },
+      rentContract.methods.rent(1,43200).send(tx),
     )
   }
 
