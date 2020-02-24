@@ -33,7 +33,48 @@ class Dialog extends Component {
       rentContract.methods.rent(1,43200).send(tx),
     )
   }
-
+  handleSubmit = e => {
+    const {
+      time,
+      pic
+    } = this.state
+    cita.base
+      .getBlockNumber()
+      .then(current => {
+        const tx = {
+          ...transaction,
+          validUntilBlock: +current + 88,
+        }
+        tx.from =
+          REACT_APP_RUNTIME === 'web' ?
+            cita.base.accounts.wallet[0].address :
+            REACT_APP_RUNTIME === 'cita-web-debugger' ?
+              cita.base.defaultAccount :
+              REACT_APP_RUNTIME === 'cyton' ?
+                window.cyton.getAccount() : ''
+        this.setState({
+          submitText: submitTexts.submitting,
+        })
+        return rentContract.methods.rent(1, 43200).send(tx)
+      })
+      .then(res => {
+        if (res.hash) {
+          return cita.listeners.listenToTransactionReceipt(res.hash).then(receipt => {
+            if (!receipt.errorMessage) {
+              this.setState({
+                submitText: submitTexts.submitted
+              })
+            } else {
+                alert(receipt.errorMessage)
+                this.props.history.push('/');
+            }
+          })
+        } else {
+            alert("Transaction send failed")
+            this.props.history.push('/');
+        }
+      })
+  }
   render() {
     return (<div className={styles.dialog}>
         <div className={styles.close}>
@@ -49,7 +90,7 @@ class Dialog extends Component {
         本办公室在{this.props.data.time}到期
       </div> : <div className={styles.footer}>
         <input value={this.state.time} placeholder="请输入时长/单位小时" onChange={this.change.bind(this)} />
-        <div onClick={this.buy.bind(this)} className={styles.btn}>支付 {`${this.state.pic}` !== 'NaN' ? this.state.pic : '--'}积分 租凭</div>
+        <div onClick={this.handleSubmit)} className={styles.btn}>支付 {`${this.state.pic}` !== 'NaN' ? this.state.pic : '--'}积分 租凭</div>
       </div>}
     </div>)
   }
