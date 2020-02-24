@@ -3,18 +3,11 @@ import Component from '@/Component'
 import styles from './my.scss'
 import classs from 'classnames'
 
+import { getLocalStorage } from 'storeUtil'
+
 class Home extends Component {
   state = {
     data: [{
-        id: 1, // id
-        status: 1, // 暂停出租，出租中，可以出租   // 这个页面的都可以点击详情，因为是我自己租的，这个页面的状态都是 出租中
-        pic: 20, // 一小时多少积分
-        num: '20-40', // 容纳多少人
-        img: '/1.jpg', // 封面图片
-        imgs: ['/1.jpg', '2.jpg', '3.jpg'], // 详情图片
-        name: '开放型会议室,提供投影和音响和40个座椅', // 名字
-        time: '2020-02-25 20:00:00', // 结束时间
-    }, {
         id: 4,
         status: 1, // 暂停出租，出租中，可以出租
         pic: 20,
@@ -26,8 +19,21 @@ class Home extends Component {
     }]
   }
 
+
+
   openDialog (data) {
     this.props.openDialog(data)
+  }
+
+  componentDidMount() {
+    const datas = JSON.parse(getLocalStorage('data'))
+    if (datas) {
+      const data = this.state.data
+      data.push(datas)
+      this.setState({
+        data
+      })
+    }
   }
 
   render() {

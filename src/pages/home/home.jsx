@@ -2,32 +2,25 @@ import React from 'react'
 import Component from '@/Component'
 import styles from './home.scss'
 import classs from 'classnames'
+import { removeLocalStorage } from 'storeUtil'
 
 class Home extends Component {
   state = {
     data: [{
       id: 1, // id 
-      status: 1, // 0 暂停出租， 1 出租中， 2 可以出租  。 只有可以出租才可以点击进入详情
-      pic: 20, // 每小时多少积分
+      status: 2, // 0 暂停出租， 1 出租中， 2 可以出租  。 只有可以出租才可以点击进入详情
+      pic: 10, // 每小时多少积分
       num: '20-40', // 容纳多少人
       img: '/1.jpg', // 封面图片
       imgs: ['/1.jpg', '2.jpg', '3.jpg'], // 详情图片
       name: '开放型会议室,提供投影和音响和40个座椅' // 名字
     }, {
-      id: 2,
-      status: 2, // 暂停出租，出租中，可以出租
-      pic: 10,
-      num: '2-6',
-      img: '/21.jpg',
-      imgs: ['/21.jpg', '22.jpg', '23.jpg'],
-      name: '茶饮,提供冰箱热水器厨灶等'
-    }, {
       id: 3,
-      status: 2, // 暂停出租，出租中，可以出租
+      status: 1, // 暂停出租，出租中，可以出租
       pic: 20,
       num: '8-10',
       img: '/31.jpg',
-      imgs: ['/31.jpg', '32.jpg'],
+      imgs: ['/31.jpg'],
       name: '中型圆桌会议室,可容纳最多10人'
     }, {
       id: 4,
@@ -37,9 +30,21 @@ class Home extends Component {
       img: '/41.jpg',
       imgs: ['/41.jpg', '43.jpg', '42.jpg'],
       name: '单独工位,有千兆无线网'
+    }, {
+      id: 2,
+      status: 2, // 暂停出租，出租中，可以出租
+      pic: 0,
+      num: '2-6',
+      img: '/21.jpg',
+      imgs: ['/21.jpg', '23.jpg'],
+      name: '茶饮,提供冰箱热水器厨灶等'
     }]
   }
 
+  componentDidMount () {
+    removeLocalStorage('data')
+  }
+  
   openDialog (data) {
     if (data.status === 2) {
       this.props.openDialog(data)
