@@ -89,12 +89,13 @@ class Dialog extends Component {
         }
         tx.from =
 
-//       REACT_APP_RUNTIME === 'web' ?
-      cita.base.accounts.wallet[0].address 
-  //      REACT_APP_RUNTIME === 'cita-web-debugger' ?
-    //      cita.base.defaultAccount :
-      //    REACT_APP_RUNTIME === 'cyton' ?
-      //      window.cyton.getAccount() 
+            //       REACT_APP_RUNTIME === 'web' ?
+        cita.base.accounts.wallet[0].address 
+            //      REACT_APP_RUNTIME === 'cita-web-debugger' ?
+            //      cita.base.defaultAccount :
+            //    REACT_APP_RUNTIME === 'cyton' ?
+          //      window.cyton.getAccount() 
+        tx.value = this.state.pic
 
         this.setState({
           submitText: submitTexts.submitting,
