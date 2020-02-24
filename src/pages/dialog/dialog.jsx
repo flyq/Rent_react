@@ -138,7 +138,7 @@ class Dialog extends Component {
         本办公室在{this.state.data.time}到期
       </div> : <div className={styles.footer}>
         <input value={this.state.time} placeholder="请输入时长/单位小时" onChange={this.change.bind(this)} />
-        <div onClick={this.handleSubmit} className={styles.btn}>支付 {`${this.state.pic}` !== 'NaN' ? this.state.pic : '--'}积分 租凭</div>
+        <div onClick={this.handleSubmit} className={styles.btn}>支付 {`${this.state.pic}` !== 'NaN' ? this.state.pic : '--'}积分 租赁</div>
       </div>}
       {this.state.isShow && <div className={styles.toast}>交易已发送,请等待区块打包</div>}
     </div>)
