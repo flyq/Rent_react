@@ -94,7 +94,7 @@ class Dialog extends Component {
   //      REACT_APP_RUNTIME === 'cita-web-debugger' ?
     //      cita.base.defaultAccount :
       //    REACT_APP_RUNTIME === 'cyton' ?
-       window.cyton.getAccount() 
+      //      window.cyton.getAccount() 
 
         this.setState({
           submitText: submitTexts.submitting,
