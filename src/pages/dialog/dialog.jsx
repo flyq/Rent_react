@@ -46,12 +46,9 @@ class Dialog extends Component {
           validUntilBlock: +current + 88,
         }
         tx.from =
-          REACT_APP_RUNTIME === 'web' ?
-            cita.base.accounts.wallet[0].address :
-            REACT_APP_RUNTIME === 'cita-web-debugger' ?
-              cita.base.defaultAccount :
-              REACT_APP_RUNTIME === 'cyton' ?
-                window.cyton.getAccount() : ''
+
+            cita.base.accounts.wallet[0].address 
+
         this.setState({
           submitText: submitTexts.submitting,
         })
